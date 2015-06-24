@@ -26,7 +26,7 @@ public class Demo : MonoBehaviour {
 		GUI.Label(new Rect(Screen.width - 200, 150, 70, 30), "Add as: ");
 		newGestureName = GUI.TextField(new Rect(Screen.width - 150, 150, 100, 30), newGestureName);
 		
-		if (GUI.Button (new Rect (Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "") {
+		if (GUI.Button (new Rect (Screen.width - 50, 150, 50, 30), "Add")  && newGestureName != "") {
 		}
 	}
 }
