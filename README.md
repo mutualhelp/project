@@ -91,6 +91,7 @@
 	매프레임마다 입력을 받아서 Point클래스 형태로 x,y좌표를 List에 저장
 
 	저장된 값을 화면에 출력해 준다.
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/ongui.png)
 
 	OnGUI()
 
