@@ -25,9 +25,7 @@ namespace PDollarGestureRecognizer
 		}
 		private static float GreedyCloudMatch(Point[] points1, Point[] points2)
 		{
-			int n = points1.Length; 
-			float eps = 0.5f;      
-			// int step = (int)Math.Floor(Math.Pow(n, 1.0f - eps));
+			int n = points1.Length;
 			int step = (int)Math.Floor (Math.Sqrt (n));
 			float minDistance = float.MaxValue;
 			for (int i = 0; i < n; i += step)
@@ -41,7 +39,6 @@ namespace PDollarGestureRecognizer
 		private static float CloudDistance(Point[] points1, Point[] points2, int startIndex)
 		{
 			int n = points1.Length; 
-			Debug.Log (n);
 			bool[] matched = new bool[n]; 
 			Array.Clear(matched, 0, n);  
 			
