@@ -70,3 +70,77 @@
 	가중치를 적용하는 이유 : 가장 가까운 점들끼리 비교 후 1대 1 매치 시키는 과정에서 최초로 비교하는 point는 모든 point와 비교한 뒤 가장 가까운 point와 매치되지만, 그 다음으로 비교하는 point 들은 점점더 적은 point들과 비교하게 되기 때문에 ( i번째 비교하는 point는 n-i개의 point들과 비교후 매치된다)
 
 	startIndex를 조절해 가며 여러번 분석하는 이유 : point 를 비교할 때 1대1로 매치해서 비교하기 떄문에 한번의 비교 만으로는 정확한 비교가 불가능하다.
+
+*일치율이 높은 Gesture의 이름과 일치율을 Result 클래스에 저장한다.
+**결과 클래스 : Result.cs
+	
+	구조체 형태이며 string값의 이름과 float형 변수의 일치율을 변수로 갖는다.
+*분석 결과를 출력 한다.
+**xml 파일 입출력 작업 및 UI 구성 : Demo.cs
+
+	Start()
+	
+	xml파일로 저장되어 있는 Gesture들을 읽어 들여 List로 저장한다.
+
+	OnGUI Method에서 사용할 Rect객체 초기화
+
+	Update()
+
+	사용하는 디바이스에 따른 입력방식 설정(PC 및 안드로이드,IOS에 한함)
+
+	매프레임마다 입력을 받아서 Point클래스 형태로 x,y좌표를 List에 저장
+
+	저장된 값을 화면에 출력해 준다.
+
+	OnGUI()
+
+	그래픽 출력을 담당하는 Method
+
+	사각형 구간을 나눠주고 GUI 버튼을 만들어 버튼 이벤트를 발생시킨다.
+
+	Recognize 버튼은 입력된 Gesture를 배열로 변환하여 비교 알고리즘에 넘겨주고 
+	
+	결과값을 받고 GUI Label로 출력해준다.
+
+	Add 버튼은 사용자가 직접 Gesture를 저장하게 해주며 GestureIO를 사용하여 파일을 쓴다.
+
+	저장 경로는 Application.persistentDataPath로 기기마다 경로가 다른것을 감안하여 사용하였다.
+
+*xml파일을 디렉터리에 읽고 쓴다.
+**xml file read&write : GestureIO.cs
+
+	ReadGestureFromXML(string xml)
+
+	xml파일 경로를 입력받아 xml파일만 읽어들여 Gesture에 저장
+
+	ReadGestureFromFile(string fileName)
+
+	디렉터리 경로만을 입력받아 파일을 읽어들여 Gesture에 저장
+
+	ReadGesture(XmlTextReader xmlReader)
+
+	실제적으로 파일을 읽어 들이는 Method로서 Gesture, Stroke, Point를 각각 구분하여
+
+	사용 가능한 데이터로 가공한다.
+
+	WriteGesture(PDollarGestureRecognizer.Point[] points, string gestureName, string fileName)
+
+	사용자가 입력한 데이터를 xml파일로 저장하는 Method로서 StreamWriter를 사용하여 xml파일
+	
+	형식에 맞게 데이터를 쓰게 하였다.
+
+*그외에 코드들
+**Geometry.cs
+	SqrEuclideanDistance(Point a, Point b)
+	
+	두 점 사이의 거리의 차를 제곱하여 더한 값을 반환한다
+
+	EuclideanDistance(Point a, Point b)
+
+	두 점 사이의 거리를 반환한다.
+**Point.cs
+	float형 x,y변수와 int 형 strokeID를 변수로 가진다.
+
+	Point(float x, float y, int strokeId)	
+
+	생성자로 변수들을 초기화 시켜준다.
