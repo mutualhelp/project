@@ -5,11 +5,19 @@
 원터치방식의 게임이 아닌 사용자가 터치로 그린 패턴을 인식하는 게임을 개발하고자 할때 필요한 라이브러리
 	패턴 : 화살표 같이 손으로 그릴수 있는 곡선들을 의미합니다
 #개발 내용
-##입력한 패턴의 표준화
+  ##입력한 패턴의 표준화
 ![](https://s3-ap-northeast-1.amazonaws.com/piveapp/p1.jpg)![](https://s3-ap-northeast-1.amazonaws.com/piveapp/p2.jpg)
 ![](https://s3-ap-northeast-1.amazonaws.com/piveapp/p3.jpg)
+
+  ##유니티로 커스터마이징
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/ongui.png)
+	
 #알고리즘 요약
-#팀원 역활
+	입력된 패턴을 표준화하여 특정 개수를 추출하여 저장하거나 비교하는데 이용
+#팀원 역할
+	김상구 : 표준화 및 알고리즘 분석
+	박상준 : 알고리즘 분석 및 문서화
+	최원준 : UI 및 유니티 커스터마이징
 #데모
 
 #요약
