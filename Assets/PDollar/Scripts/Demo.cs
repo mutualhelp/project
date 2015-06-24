@@ -7,35 +7,34 @@ using System.IO;
 using PDollarGestureRecognizer;
 
 public class Demo : MonoBehaviour {
-
+	
 	public Transform gestureOnScreenPrefab;
 	
 	private List<Gesture> trainingSet = new List<Gesture>();
+	
 	
 	private List<Point> points = new List<Point>();
 	private int strokeId = -1;
 	
 	private Vector3 virtualKeyPosition = Vector2.zero;
-	
+	private Rect drawArea;
 	
 	private RuntimePlatform platform;
 	private int vertexCount = 0;
 	
 	private List<LineRenderer> gestureLinesRenderer = new List<LineRenderer>();
 	private LineRenderer currentGestureLineRenderer;
-
-	private Rect drawArea;
-
+	
+	//GUI
 	private string message;
 	private bool recognized;
 	private string newGestureName = "";
-
-	// Use this for initialization
+	
 	void Start () {
+		Debug.Log (Application.persistentDataPath);
 		platform = Application.platform;
-
 		drawArea = new Rect(0, 0, Screen.width - Screen.width / 3, Screen.height);
-
+		
 		//Load pre-made gestures
 		TextAsset[] gesturesXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");
 		foreach (TextAsset gestureXml in gesturesXml)
@@ -45,11 +44,19 @@ public class Demo : MonoBehaviour {
 		string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");
 		foreach (string filePath in filePaths)
 			trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
-	
+		
+		TextAsset[] gesturesForViewXml = Resources.LoadAll<TextAsset>("GestureSet/10-stylus-MEDIUM/");
+		foreach (TextAsset gestureXml in gesturesForViewXml)
+			trainingSet.Add(GestureIO.ReadGestureFromXML(gestureXml.text));
+		
+		//Load user custom gestures
+		string[] filePathsForView = Directory.GetFiles(Application.persistentDataPath, "*.xml");
+		foreach (string filePath in filePathsForView)
+			trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
 	}
 	
-	// Update is called once per frame
 	void Update () {
+		
 		if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
 			if (Input.touchCount > 0) {
 				virtualKeyPosition = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
@@ -97,14 +104,16 @@ public class Demo : MonoBehaviour {
 				currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3(virtualKeyPosition.x, virtualKeyPosition.y, 10)));
 			}
 		}
-	
 	}
-	void OnGUI(){
+	
+	void OnGUI() {
+		
 		GUI.Box(drawArea, "Draw Area");
 		
 		GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
 		
-		if (GUI.Button (new Rect (Screen.width - 100, 10, 100, 30), "Recognize")) {
+		if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize")) {
+			
 			recognized = true;
 			
 			Gesture candidate = new Gesture(points.ToArray());
@@ -112,10 +121,12 @@ public class Demo : MonoBehaviour {
 			
 			message = gestureResult.GestureClass + " " + gestureResult.Score;
 		}
+		
 		GUI.Label(new Rect(Screen.width - 200, 150, 70, 30), "Add as: ");
 		newGestureName = GUI.TextField(new Rect(Screen.width - 150, 150, 100, 30), newGestureName);
-
-		if (GUI.Button (new Rect (Screen.width - 50, 150, 50, 30), "Add") && newGestureName != "") {
+		
+		if (GUI.Button(new Rect(Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "") {
+			
 			string fileName = String.Format("{0}/{1}-{2}.xml", Application.persistentDataPath, newGestureName, DateTime.Now.ToFileTime());
 			
 			#if !UNITY_WEBPLAYER
