@@ -33,9 +33,7 @@ namespace PDollarGestureRecognizer
 			for (int i = 0; i < n; i += step)
 			{
 				float dist1 = CloudDistance(points1, points2, i);  
-				Debug.Log("dist1 :"+dist1+"i:"+i);
 				float dist2 = CloudDistance(points2, points1, i);  
-				Debug.Log("dist2 :"+dist2+"i:"+i);
 				minDistance = Math.Min(minDistance, Math.Min(dist1, dist2));
 			}
 			return minDistance;
