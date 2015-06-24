@@ -100,8 +100,11 @@ public class Demo : MonoBehaviour {
 	void OnGUI() {
 		
 		GUI.Box(drawArea, "Draw Area");
+
+		GUIStyle myLabelStyle = new GUIStyle(GUI.skin.label);
+		myLabelStyle.fontSize = 30;
 		
-		GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message);
+		GUI.Label(new Rect(10, Screen.height - 40, 500, 50), message,myLabelStyle);
 		
 		if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize")) {
 			
