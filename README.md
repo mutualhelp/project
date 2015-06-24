@@ -36,8 +36,6 @@
 	32개만 하는 이유는 다음 그래프를 보면 이해가 된다. 
 
 ![](https://s3-ap-northeast-1.amazonaws.com/piveapp/KakaoTalk_20150625_051638797.png)
-
-
 	
 	8개 추출시 96%, 32개 추출시 98.6%,그리고 32개와 96개 사이로
 
@@ -64,25 +62,3 @@
 	가중치를 적용하는 이유 : 가장 가까운 점들끼리 비교 후 1대 1 매치 시키는 과정에서 최초로 비교하는 point는 모든 point와 비교한 뒤 가장 가까운 point와 매치되지만, 그 다음으로 비교하는 point 들은 점점더 적은 point들과 비교하게 되기 때문에 ( i번째 비교하는 point는 n-i개의 point들과 비교후 매치된다)
 
 	startIndex를 조절해 가며 여러번 분석하는 이유 : point 를 비교할 때 1대1로 매치해서 비교하기 떄문에 한번의 비교 만으로는 정확한 비교가 불가능하다.
-
-
-
-$P Point-Cloud Recognizer
-
-=========================
-
-[Original article](http://depts.washington.edu/aimgroup/proj/dollar/pdollar.html). [Unity Web demo](http://aymericlamboley.fr/blog/wp-content/uploads/2014/07/index.html).
-
-
-This is an adaptation of the original C# code for working with Unity.
-
-
-In the demo, only one point-cloud template is loaded for each of the 16 gesture types. You can add additional templates as you wish, and even define your own custom gesture templates.
-
-
-
-About
-
------
-
-The [$P](http://depts.washington.edu/aimgroup/proj/dollar/pdollar.html) Point-Cloud Recognizer is a 2-D gesture recognizer designed for rapid prototyping of gesture-based user interfaces. In machine learning terms, $P is an instance-based nearest-neighbor classifier with a Euclidean scoring function, i.e., a geometric template matcher. $P is the latest in the dollar family of recognizers that includes [$1](http://depts.washington.edu/aimgroup/proj/dollar/index.html) for unistrokes and [$N](http://depts.washington.edu/aimgroup/proj/dollar/ndollar.html) for multistrokes. Although about half of $P's code is from $1, unlike both $1 and $N, $P does not represent gestures as ordered series of points (i.e., strokes), but as unordered point-clouds. By representing gestures as point-clouds, $P can handle both unistrokes and multistrokes equivalently and without the combinatoric overhead of $N. When comparing two point-clouds, $P solves the classic [assignment problem](http://en.wikipedia.org/wiki/Assignment_problem) between two bipartite graphs using an approximation of th
