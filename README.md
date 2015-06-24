@@ -33,7 +33,11 @@
 
 	Resample Method는 Gesture를 일정한 간격의 point 집합으로 재추출 하는 과정을 거치는데 이때 재추출은 32개만 한다.
 
-	32개만 하는 이유는 다음 그래프를 보면 이해가 된다. ![](https://s3-ap-northeast-1.amazonaws.com/piveapp/KakaoTalk_20150625_051638797.png)
+	32개만 하는 이유는 다음 그래프를 보면 이해가 된다. 
+
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/KakaoTalk_20150625_051638797.png)
+
+
 	
 	8개 추출시 96%, 32개 추출시 98.6%,그리고 32개와 96개 사이로
 
@@ -75,8 +79,6 @@ This is an adaptation of the original C# code for working with Unity.
 
 In the demo, only one point-cloud template is loaded for each of the 16 gesture types. You can add additional templates as you wish, and even define your own custom gesture templates.
 
-
-![](https://s3-ap-northeast-1.amazonaws.com/piveapp/KakaoTalk_20150625_051638797.png)
 
 
 About
