@@ -1,9 +1,6 @@
-﻿using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
 using System.Xml;
-using System.Collections;
-using System;
 
 using UnityEngine;
 
@@ -85,7 +82,6 @@ namespace PDollarGestureRecognizer
 				if (xmlReader != null)
 					xmlReader.Close();
 			}
-			
 			return new Gesture(points.ToArray(), gestureName);
 		}
 		
@@ -114,7 +110,44 @@ namespace PDollarGestureRecognizer
 				sw.WriteLine("</Gesture>");
 			}
 		}
-
-		
+		private static Gesture ReadGestureForView(XmlTextReader xmlReader)
+		{
+			List<Point> points = new List<Point>();
+			int currentStrokeIndex = -1;
+			string gestureName = "";
+			try
+			{
+				while (xmlReader.Read())
+				{
+					if (xmlReader.NodeType != XmlNodeType.Element) continue;
+					switch (xmlReader.Name)
+					{
+					case "Gesture":
+						gestureName = xmlReader["Name"];
+						if (gestureName.Contains("~")) 
+							gestureName = gestureName.Substring(0, gestureName.LastIndexOf('~'));
+						if (gestureName.Contains("_")) 
+							gestureName = gestureName.Replace('_', ' ');
+						break;
+					case "Stroke":
+						currentStrokeIndex++;
+						break;
+					case "Point":
+						points.Add(new Point(
+							float.Parse(xmlReader["X"]),
+							float.Parse(xmlReader["Y"]),
+							currentStrokeIndex
+							));
+						break;
+					}
+				}
+			}
+			finally
+			{
+				if (xmlReader != null)
+					xmlReader.Close();
+			}
+			return new Gesture(points.ToArray(), gestureName);
+		}
 	}
 }
