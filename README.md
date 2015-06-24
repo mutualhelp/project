@@ -5,7 +5,7 @@
 원터치방식의 게임이 아닌 사용자가 터치로 그린 패턴을 인식하는 게임을 개발하고자 할때 필요한 라이브러리
 	패턴 : 화살표 같이 손으로 그릴수 있는 곡선들을 의미합니다
 #개발 내용
-입력한 패턴의 표준화
+##입력한 패턴의 표준화
 ![](https://s3-ap-northeast-1.amazonaws.com/piveapp/p1.jpg)![](https://s3-ap-northeast-1.amazonaws.com/piveapp/p2.jpg)
 ![](https://s3-ap-northeast-1.amazonaws.com/piveapp/p3.jpg)
 #알고리즘 요약
