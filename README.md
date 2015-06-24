@@ -14,12 +14,19 @@
 	
 #알고리즘 요약
 	입력된 패턴을 표준화하여 특정 개수를 추출하여 저장하거나 비교하는데 이용
+	따라서 크기가 다른 같은 종류의 패턴을 입력 하더라도 같은 패턴으로 인식
+	입력된 패턴과 기존의 패턴사이의 거리를 비교하여 최소거리에 해당하는 Point끼리 매칭시켜 준뒤
+	총거리에 가중치를 두어 일치율을 계산한다.
+	
 #팀원 역할
 	김상구 : 표준화 및 알고리즘 분석
 	박상준 : 알고리즘 분석 및 문서화
 	최원준 : UI 및 유니티 커스터마이징
 #데모
-
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/demo1.jpg)
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/demo2.jpg)
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/demo3.jpg)
+![](https://s3-ap-northeast-1.amazonaws.com/piveapp/demo4.jpg)
 #요약
 
 *최초 실행시 프로젝트 폴더로 부터 미리 저장해둔 Gesture(패턴)를 불러와 전처리 후 List형태로 저장
